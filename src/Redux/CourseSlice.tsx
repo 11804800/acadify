@@ -68,7 +68,7 @@ const initialState: CourseInterface = {
         },
         {
             id: 3,
-            coursetype: "special"
+            coursetype: "Special"
         },
     ]
 }

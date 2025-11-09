@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { setRegisterModalOpen } from "../Redux/Student";
 import type { RootState } from "../Redux/Store";
+import { useState } from "react";
 
 type CourseOffers = {
     id: number,
@@ -15,8 +16,18 @@ type studentType = {
     courseId: string
 }
 
+interface CourseTypeInterface {
+    id: number,
+    coursetype: string
+}
+
 function StudentDashboard() {
     const dispatch = useDispatch();
+    const [courseType, setCourseType] = useState<string>("");
+
+    const CourseType: CourseTypeInterface[] = useSelector((state: RootState) => {
+        return state.course.courseType
+    });
 
     const CourseOfferings: CourseOffers[] = useSelector((state: RootState) => {
         return state.courseoffers.courseOffers
@@ -26,17 +37,31 @@ function StudentDashboard() {
         return state.student.data
     });
 
+    const FilteredCouseOffering: CourseOffers[] = courseType ? CourseOfferings.filter((item: CourseOffers) => item.courseType == courseType) : CourseOfferings;
 
     return (
         <div className="p-2 w-full h-full">
             <div className="px-3 bg-zinc-50 py-2 rounded-md">
                 <p className="text-[11px]">Student Dashboard</p>
             </div>
-            <div className="py-5 px-2">
+            <div className="py-5 px-2 flex justify-between flex-col md:flex-row gap-5">
                 <button onClick={() => dispatch(setRegisterModalOpen())} className="bg-blue-600 text-white px-3 sm:px-6 py-2 rounded-md shadow active:bg-blue-600 hover:bg-blue-500">Register New Student</button>
+                <div className="flex items-center text-sm gap-1">
+                    <p>CourseType : </p>
+                    <select value={courseType} onChange={(e: any) => setCourseType(e.target.value)} className="outline-none bg-blue-50 px-2 py-2 rounded-md capitalize">
+                        <option value="">All</option>
+                        {
+                            CourseType.map((item: CourseTypeInterface) => {
+                                return (
+                                    <option value={item.coursetype} key={item.id} className="capitalize">{item.coursetype}</option>
+                                )
+                            })
+                        }
+                    </select>
+                </div>
             </div>
             <div className="flex flex-col gap-2">
-                {CourseOfferings.map((item: CourseOffers, index: number) => {
+                {FilteredCouseOffering.map((item: CourseOffers, index: number) => {
                     return (
                         <div key={index} className="flex flex-col gap-2 px-2 pt-2 pb-4">
                             <div className="px-2 py-2 bg-slate-100 rounded-md">
