@@ -65,8 +65,12 @@ const CourseSlice = createSlice({
             state.courseType[state.courseTypeIndex] = action.payload;
             state.courseTypeIndex = -1;
         },
-        DeleteCourseType: (state, action: PayloadAction<number>) => {
-            state.courseType = state.courseType.slice(action.payload, 1);
+        DeleteCourseType: (state) => {
+            const index = state.courseTypeIndex;
+            if (index >= 0 && index < state.courseType.length) {
+                state.courseType.splice(index, 1);
+            }
+            state.courseTypeIndex = -1;
         },
         setCourseTypeIndex: (state, action: PayloadAction<number>) => {
             state.courseTypeIndex = action.payload
