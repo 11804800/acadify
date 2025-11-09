@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import type { RootState } from "../Redux/Store"
 import { Edit2, Trash2 } from "@deemlol/next-icons";
-import { setCreateCourseTypeModalOpen, setDeleteCourseTypeModalOpen, setUpdateCourseTypeModalOpen } from "../Redux/CourseSlice";
+import { setCourseTypeIndex, setCreateCourseTypeModalOpen, setDeleteCourseTypeModalOpen, setUpdateCourseTypeModalOpen } from "../Redux/CourseSlice";
 
 type CourseType = {
     id: number,
@@ -38,10 +38,16 @@ function CourseTypes() {
                                         <div className="w-[80%]">
                                             <p>{item.coursetype}</p>
                                         </div>
-                                        <button onClick={() => dispatch(setUpdateCourseTypeModalOpen())} className="hover:text-blue-500 active:text-black">
+                                        <button onClick={() => {
+                                            dispatch(setCourseTypeIndex(index))
+                                            dispatch(setUpdateCourseTypeModalOpen())
+                                        }} className="hover:text-blue-500 active:text-black">
                                             <Edit2 size={15} />
                                         </button>
-                                        <button onClick={() => dispatch(setDeleteCourseTypeModalOpen())} className="hover:text-blue-500 active:text-black"><Trash2 size={15} /></button>
+                                        <button onClick={() => {
+                                            dispatch(setCourseTypeIndex(index))
+                                            dispatch(setDeleteCourseTypeModalOpen())
+                                        }} className="hover:text-blue-500 active:text-black"><Trash2 size={15} /></button>
                                     </div>
                                 </div>
                             )
