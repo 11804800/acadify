@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux'
 import CreateCourseTypeModal from './Modals/CourseType/CreateCourseTypeModal'
 import DeleteCourseTypeModal from './Modals/CourseType/DeleteCourseTypeModal'
 import UpdateCourseTypeModal from './Modals/CourseType/UpdateCourseTypeModal'
+import CreateCourseModal from './Modals/Course/CreateCourseModal'
 
 function App() {
   useEffect(() => {
@@ -33,9 +34,13 @@ function App() {
   const OpenCreateCourseTypeModal: boolean = useSelector((state: RootState) => {
     return state.course.openCreateCourseTypeModal
   });
+  const OpenCreateCourseModal: boolean = useSelector((state: RootState) => {
+    return state.course.openCreateCourseModal
+  });
 
   return (
     <>
+      {OpenCreateCourseModal && <CreateCourseModal />}
       {OpenCreateCourseTypeModal && <CreateCourseTypeModal />}
       {OpenDeleteCourseTypeModal && <DeleteCourseTypeModal />}
       {OpenUpdateCourseTypeModal && <UpdateCourseTypeModal />}
