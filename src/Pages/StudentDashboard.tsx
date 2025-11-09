@@ -72,7 +72,7 @@ function StudentDashboard() {
                                 {
                                     StudentData.filter((elem: studentType) => elem.courseId == item.name).map((val: studentType, index: number) => {
                                         return (
-                                            <div key={index} className="bg-blue-50 p-2 rounded-md flex">
+                                            <div key={index} className="bg-blue-50 p-2 rounded-md flex text-sm">
                                                 <p className="w-full">{val.fullname}</p>
                                                 <p className="w-full">{val.email}</p>
                                             </div>

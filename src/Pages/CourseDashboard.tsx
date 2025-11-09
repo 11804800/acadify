@@ -25,7 +25,7 @@ function CourseDashboard() {
             </div>
             <div className="flex flex-col p-2 h-[80%]">
                 <div className="flex bg-slate-200 p-2 font-medium">
-                    <h3 className="w-full px-2">Id</h3>
+                    <h3 className="w-fit sm:w-full px-2">Id</h3>
                     <h3 className="w-full px-2">Name</h3>
                 </div>
                 <div className="overflow-y-auto h-[80%]">
@@ -33,8 +33,8 @@ function CourseDashboard() {
                         courses.map((item: Courses, index: number) => {
                             return (
                                 <div key={index} className={`flex w-full p-2 ${index % 2 != 0 && "bg-slate-50"}`}>
-                                    <p className="w-full px-2">{item.id}.</p>
-                                    <div className="w-full flex items-center justify-between pr-2 gap-2 sm:pr-4">
+                                    <p className="w-fit sm:w-full px-2">{item.id}.</p>
+                                    <div className="w-full flex items-center justify-between pr-2 gap-2 sm:pr-4 pl-2">
                                         <div className="w-[80%]">
                                             <p>{item.name}</p>
                                         </div>
