@@ -1,8 +1,12 @@
-import React from 'react'
+import HeaderComponent from './Components/HeaderComponent'
+import FooterComponent from './Components/FooterComponent'
 
 function App() {
   return (
-    <div>App</div>
+    <div>
+      <HeaderComponent />
+      <FooterComponent />
+    </div>
   )
 }
 
