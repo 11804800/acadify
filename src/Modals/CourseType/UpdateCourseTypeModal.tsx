@@ -20,7 +20,7 @@ function UpdateCourseTypeModal() {
         return state.course.courseTypeIndex
     })
 
-    const filterData: CourseType | undefined = Coursetype.find((item: any, index: number) => index == CourseTypeIndex)
+    const filterData: CourseType | undefined = Coursetype.find((_, index: number) => index == CourseTypeIndex)
     const [name, setName] = useState(filterData?.coursetype);
 
     function FormSubmit(e: any) {
