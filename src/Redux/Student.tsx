@@ -1,20 +1,35 @@
 import { createSlice } from "@reduxjs/toolkit"
+import type { PayloadAction } from "@reduxjs/toolkit"
+
+
+type studentType = {
+    fullname: string,
+    email: string,
+    courseId: string
+}
 
 interface StudentInterface {
-    data: any[]
+    data: studentType[],
+    openRegisterModal: boolean
 }
 
 const initialState: StudentInterface = {
-    data: []
+    data: [],
+    openRegisterModal: false
 }
 
 const Student = createSlice({
-    name: "Student",
+    name: "courseSlice",
     initialState,
     reducers: {
-
+        addNewStudent: (state, action: PayloadAction<studentType>) => {
+            state.data.push(action.payload)
+        },
+        setRegisterModalOpen: (state) => {
+            state.openRegisterModal = !state.openRegisterModal
+        }
     }
-});
+})
 
 export default Student.reducer;
-export const { } = Student.actions
+export const { addNewStudent, setRegisterModalOpen } = Student.actions;

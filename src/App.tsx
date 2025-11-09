@@ -15,6 +15,7 @@ import UpdateCourseModal from './Modals/Course/UpdateCouseModal'
 import CourseOfferings from './Pages/CourseOfferings'
 import CreateCourseOfferingsModal from './Modals/CourseOfferings/CreateCourseOfferingsModal'
 import UpdateCourseOfferingsModal from './Modals/CourseOfferings/UpdateCourseOfferingsModal'
+import RegisterModal from './Modals/StudentDashboard/RegisterModal'
 
 function App() {
   useEffect(() => {
@@ -50,9 +51,14 @@ function App() {
   const OpenCreateCourseOfferingModal: boolean = useSelector((state: RootState) => {
     return state.courseoffers.openAddNewCourseOffersModal
   });
+  const openRegisterModal: boolean = useSelector((state: RootState) => {
+    return state.student.openRegisterModal
+  });
+
 
   return (
     <>
+      {openRegisterModal && <RegisterModal />}
       {OpenCreateCourseOfferingModal && <CreateCourseOfferingsModal />}
       {OpenCreateCourseModal && <CreateCourseModal />}
       {OpenCreateCourseTypeModal && <CreateCourseTypeModal />}
