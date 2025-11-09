@@ -18,7 +18,6 @@ interface CourseInterface {
     openDeleteCourseTypeModal: boolean,
     openCreateCourseTypeModal: boolean,
     openUpdateCourseModal: boolean,
-    openDeleteCourseModal: boolean,
     openCreateCourseModal: boolean,
     courseType: CourseType[],
     courses: Courses[]
@@ -31,7 +30,6 @@ const initialState: CourseInterface = {
     openDeleteCourseTypeModal: false,
     openCreateCourseTypeModal: false,
     openUpdateCourseModal: false,
-    openDeleteCourseModal: false,
     openCreateCourseModal: false,
     courses: [
         {
@@ -94,9 +92,6 @@ const CourseSlice = createSlice({
         setCreateCourseModalOpen: (state) => {
             state.openCreateCourseModal = !state.openCreateCourseModal
         },
-        setDeleteCourseModalOpen: (state) => {
-            state.openDeleteCourseModal = !state.openDeleteCourseModal
-        },
         CreateNewCourseType: (state, action: PayloadAction<string>) => {
             state.courseType.push({
                 id: state.courseType.length + 1,
@@ -126,6 +121,17 @@ const CourseSlice = createSlice({
                 name: action.payload
             });
         },
+        UpdateCourse: (state, action: PayloadAction<Courses>) => {
+            state.courses[state.courseIndex] = action.payload;
+            state.courseIndex = -1;
+        },
+        DeleteCourse: (state) => {
+            const index = state.courseIndex;
+            if (index >= 0 && index < state.courses.length) {
+                state.courses.splice(index, 1);
+            }
+            state.courseIndex = -1;
+        },
     }
 });
 
@@ -135,11 +141,13 @@ export const {
     setDeleteCourseTypeModalOpen,
     setUpdateCourseTypeModalOpen,
     setCreateCourseModalOpen,
-    setDeleteCourseModalOpen,
     setUpdateCourseModalOpen,
     setCourseTypeIndex,
     UpdateCourseType,
     DeleteCourseType,
     CreateNewCourseType,
-    CreateNewCourse
+    CreateNewCourse,
+    DeleteCourse,
+    UpdateCourse,
+    setCourseIndex
 } = CourseSlice.actions

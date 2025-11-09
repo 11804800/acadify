@@ -11,6 +11,7 @@ import CreateCourseTypeModal from './Modals/CourseType/CreateCourseTypeModal'
 import DeleteCourseTypeModal from './Modals/CourseType/DeleteCourseTypeModal'
 import UpdateCourseTypeModal from './Modals/CourseType/UpdateCourseTypeModal'
 import CreateCourseModal from './Modals/Course/CreateCourseModal'
+import UpdateCourseModal from './Modals/Course/UpdateCouseModal'
 
 function App() {
   useEffect(() => {
@@ -30,6 +31,9 @@ function App() {
   const OpenUpdateCourseTypeModal: boolean = useSelector((state: RootState) => {
     return state.course.openUpdateCourseTypeModal
   });
+  const OpenUpdateCourseModal: boolean = useSelector((state: RootState) => {
+    return state.course.openUpdateCourseModal
+  });
 
   const OpenCreateCourseTypeModal: boolean = useSelector((state: RootState) => {
     return state.course.openCreateCourseTypeModal
@@ -44,6 +48,9 @@ function App() {
       {OpenCreateCourseTypeModal && <CreateCourseTypeModal />}
       {OpenDeleteCourseTypeModal && <DeleteCourseTypeModal />}
       {OpenUpdateCourseTypeModal && <UpdateCourseTypeModal />}
+      {
+        OpenUpdateCourseModal && <UpdateCourseModal />
+      }
       <HeaderComponent />
       <Routes>
         <Route path='/' element={<StudentDashboard />} />
